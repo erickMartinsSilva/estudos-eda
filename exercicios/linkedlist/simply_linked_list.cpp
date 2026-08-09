@@ -57,6 +57,7 @@ void print_simply_linked_list(NodePtr head) {
     printf("[ ");
     while(aux != NULL) {
         printf("%d ", aux->data);
+        aux = aux->next;
     }
     printf("]\n");
 }
