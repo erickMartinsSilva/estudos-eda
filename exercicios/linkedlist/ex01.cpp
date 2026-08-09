@@ -3,20 +3,63 @@
 
 using namespace std;
 
-struct no {
+struct Node {
     int info;
-    struct no* prox;
+    struct Node* next;
 };
 
-typedef struct no* noPtr;
+typedef struct Node* nodePtr;
 
-noPtr topo = NULL;
-
-int sizeList() {
-    noPtr aux = topo; int cntd = 0;
+int linked_list_size(nodePtr head) {
+    nodePtr aux = head; int size = 0;
     while(aux != NULL) {
-        cntd++;
-        aux = aux->prox;
+        size++;
+        aux = aux->next;
     }
-    return cntd;
+    return size;
+}
+
+bool linked_list_empty(nodePtr head_or_tail) {
+    return !head_or_tail;
+}
+
+void add_to_linked_list(nodePtr* head, nodePtr* tail, int info) {
+    nodePtr newNodePtr = new Node;
+    newNodePtr->info = info;
+    
+    if(linked_list_empty(*head)) {
+        newNodePtr->next = NULL;
+        *head = newNodePtr;
+    } else {
+        (*tail)->next = newNodePtr;
+        newNodePtr->next = NULL;
+    }
+    *tail = newNodePtr;
+}
+
+void test_linked_list_size() {
+    nodePtr head = NULL, tail = NULL;
+
+    int first_result = linked_list_size(head);
+
+    add_to_linked_list(&head, &tail, 1);
+    int second_result = linked_list_size(head);
+
+    add_to_linked_list(&head, &tail, 1);
+    add_to_linked_list(&head, &tail, 1);
+    add_to_linked_list(&head, &tail, 1);
+    int third_result = linked_list_size(head);
+
+    bool passed = first_result == 0 && second_result == 1 && third_result == 4;
+    if(!passed) {
+        printf("Results invalid for the current implementation. Expected [0, 1, 4] and received [%d, %d, %d]\n",
+            first_result, second_result, third_result
+        );
+        return;
+    }
+    printf("Passed\n");
+}
+
+int main() {
+    test_linked_list_size();
 }
