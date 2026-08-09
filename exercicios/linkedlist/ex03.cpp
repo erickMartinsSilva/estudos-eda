@@ -1,25 +1,34 @@
-// Função que recebe o endereço do topo de duas listas simplesmente encadeadas e concatena elas, imprimindo o resultado
+// Função que concatena duas listas simplesmente encadeadas
+
 #include <iostream>
+#include "simply_linked_list.hpp"
 
 using namespace std;
 
-struct no {
-    int info;
-    struct no* prox;
-};
+void concatenate_linked_lists(NodePtr tail1, NodePtr head2) {
+    tail1->next = head2;
+}
 
-typedef struct no* noPtr;
+void test_concatenate_linked_lists() {
+    NodePtr head1 = NULL, tail1 = NULL;
+    NodePtr head2 = NULL, tail2 = NULL;
 
-void concatenarListas(noPtr topo1, noPtr topo2) {
-    noPtr ult1, aux;
-    ult1 = topo1;
-    while(ult1 != NULL) {
-        ult1 = ult1->prox;
-    }
-    ult1->prox = topo2;
-    aux = topo1;
-    while(aux != NULL) {
-        cout << aux->info;
-        aux = aux->prox;
-    }
+    add_to_simply_linked_list(&head1, &tail1, 1);
+    add_to_simply_linked_list(&head1, &tail1, 2);
+    add_to_simply_linked_list(&head1, &tail1, 3);
+    add_to_simply_linked_list(&head1, &tail1, 4);
+    add_to_simply_linked_list(&head1, &tail1, 5);
+
+    add_to_simply_linked_list(&head2, &tail2, 6);
+    add_to_simply_linked_list(&head2, &tail2, 7);
+    add_to_simply_linked_list(&head2, &tail2, 8);
+
+    concatenate_linked_lists(tail1, head2);
+
+    printf("Result: ");
+    print_simply_linked_list(head1);
+}
+
+int main() {
+    test_concatenate_linked_lists();
 }
