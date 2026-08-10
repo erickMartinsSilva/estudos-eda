@@ -59,3 +59,24 @@ void print_simply_linked_list(NodePtr head) {
         aux = aux->next;
     }
 }
+
+string simply_linked_list_to_string(NodePtr head) {
+    NodePtr aux = head;
+    string result;
+    
+    while(aux != NULL) {
+        string data_string = to_string(aux->data);
+        
+        result.append("[ ");
+        result.append(data_string);
+        if(aux->next != NULL) {
+            result.append(" ] -> ");
+        } else {
+            result.append(" ]");
+        }
+
+        aux = aux->next;
+    }
+
+    return result;
+}
