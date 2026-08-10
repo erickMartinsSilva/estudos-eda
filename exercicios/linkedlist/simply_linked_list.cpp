@@ -50,10 +50,12 @@ void remove_from_simply_linked_list(NodePtr* head, NodePtr* tail, int data) {
 
 void print_simply_linked_list(NodePtr head) {
     NodePtr aux = head;
-    printf("[ ");
     while(aux != NULL) {
-        printf("%d ", aux->data);
+        if(aux->next == NULL) {
+            printf("[%d]\n", aux->data);
+        } else {
+            printf("[%d] -> ", aux->data);
+        }
         aux = aux->next;
     }
-    printf("]\n");
 }
