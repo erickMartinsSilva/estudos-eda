@@ -38,18 +38,14 @@ void remove_from_simply_linked_list(NodePtr* head, NodePtr* tail, int data) {
 
     if(aux == *head) {
         *head = aux->next;
-        aux->next = NULL;
-        delete aux;
     } else if (aux == *tail) {
         *tail = prev_aux;
         prev_aux->next = NULL;
-        aux->next = NULL;
-        delete aux;
     } else {
-        prev_aux->next = NULL;
-        aux->next = NULL;
-        delete aux;
+        prev_aux->next = aux->next;
     }
+    aux->next = NULL;
+    delete aux;
 }
 
 void print_simply_linked_list(NodePtr head) {
