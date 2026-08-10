@@ -35,8 +35,14 @@ void test_removeFromLista() {
 
     removeFromLista(&head, 2);
 
-    printf("Result: ");
-    print_simply_linked_list(head);
+    string result = simply_linked_list_to_string(head);
+    string expected_result = "[ 1 ] -> [ 3 ]";
+    bool passed = result.compare(expected_result) == 0;
+    if(!passed) {
+        cout << "Failed. Expected:" << endl << expected_result << endl << "Obtained:" << endl << result << endl; 
+        return;
+    }
+    cout << "Passed" << endl;
 }
 
 int main() {

@@ -25,8 +25,14 @@ void test_concatenate_linked_lists() {
 
     concatenate_linked_lists(tail1, head2);
 
-    printf("Result: ");
-    print_simply_linked_list(head1);
+    string result = simply_linked_list_to_string(head1);
+    string expected_result = "[ 1 ] -> [ 2 ] -> [ 3 ] -> [ 4 ] -> [ 5 ] -> [ 6 ] -> [ 7 ] -> [ 8 ]";
+    bool passed = result.compare(expected_result) == 0;
+    if(!passed) {
+        cout << "Failed. Expected: " << endl << expected_result << endl << "Obtained: " << endl << result << endl;
+        return;
+    }
+    cout << "Passed" << endl;
 }
 
 int main() {
